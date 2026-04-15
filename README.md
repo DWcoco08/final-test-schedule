@@ -16,7 +16,7 @@ Xếp lịch thi cho các môn học sao cho **không có sinh viên nào bị t
 
 ```
 ├── src/
-│   ├── main.cpp                    # Chương trình chính
+│   ├── source.cpp                    # Chương trình chính
 │   ├── core/                       # Module dùng chung
 │   │   ├── scheduler.h             # Struct Course + typedef Schedule
 │   │   ├── input.h / input.cpp     # Đọc file + in kết quả
