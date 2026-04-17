@@ -248,36 +248,57 @@ void pl_file(ofstream &out, vector<int> &s, string strategy)
 // ===== CHƯƠNG TRÌNH CHÍNH =====
 int main()
 {
-    rd(); // đọc input
-    bd(); // xây dựng ma trận xung đột
+    int t;
+    cin >> t; // đọc số test case
 
-    ofstream outfile("output.txt", ios::app); // mở file append mode
+    ofstream outfile("output.txt"); // mở file ghi đè
 
-    // Chạy Backtracking
-    cout << "Dang chay Backtracking...\n";
-    vector<int> resultBT = solveBT();
-    pl(resultBT);
-    pl_file(outfile, resultBT, "BACKTRACKING");
+    for (int tc = 1; tc <= t; tc++)
+    {
+        cout << "======== TEST CASE " << tc << " ========\n";
+        outfile << "======== TEST CASE " << tc << " ========\n";
 
-    // Reset biến toàn cục cho DP
-    best = nm;
-    ans.assign(nm, 0);
+        // Reset dữ liệu
+        a.clear();
+        a.resize(0);
+        c.clear();
+        c.resize(0);
+        best = 0;
+        ans.assign(0, 0);
+        memo.assign(0, false);
 
-    // Chạy Dynamic Programming
-    cout << "\nDang chay Dynamic Programming...\n";
-    vector<int> resultDP = solveDP();
-    pl(resultDP);
-    pl_file(outfile, resultDP, "DYNAMIC PROGRAMMING");
+        rd(); // đọc input
+        bd(); // xây dựng ma trận xung đột
 
-    // Chạy Greedy
-    cout << "\nDang chay Greedy...\n";
-    vector<int> resultGreedy = solveGreedy();
-    pl(resultGreedy);
-    pl_file(outfile, resultGreedy, "GREEDY");
+        // Chạy Backtracking
+        cout << "\nDang chay Backtracking...\n";
+        vector<int> resultBT = solveBT();
+        pl(resultBT);
+        pl_file(outfile, resultBT, "BACKTRACKING");
+
+        // Reset biến toàn cục cho DP
+        best = nm;
+        ans.assign(nm, 0);
+
+        // Chạy Dynamic Programming
+        cout << "Dang chay Dynamic Programming...\n";
+        vector<int> resultDP = solveDP();
+        pl(resultDP);
+        pl_file(outfile, resultDP, "DYNAMIC PROGRAMMING");
+
+        // Chạy Greedy
+        cout << "Dang chay Greedy...\n";
+        vector<int> resultGreedy = solveGreedy();
+        pl(resultGreedy);
+        pl_file(outfile, resultGreedy, "GREEDY");
+
+        outfile << "\n"; // dòng trống giữa các test case
+    }
 
     outfile.close(); // đóng file
 
-    cout << "\nKet qua da luu vao output.txt\n";
+    cout << "\n======== HOAN TAT ========\n";
+    cout << "Ket qua da luu vao output.txt\n";
 
     return 0;
 }
