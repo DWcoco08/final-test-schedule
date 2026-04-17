@@ -271,7 +271,7 @@ int main()
         bd(); // xây dựng ma trận xung đột
 
         // Chạy Backtracking
-        cout << "\nDang chay Backtracking...\n";
+        cout << "\nBacktracking\n";
         vector<int> resultBT = solveBT();
         pl(resultBT);
         pl_file(outfile, resultBT, "BACKTRACKING");
@@ -281,13 +281,13 @@ int main()
         ans.assign(nm, 0);
 
         // Chạy Dynamic Programming
-        cout << "Dang chay Dynamic Programming...\n";
+        cout << "Dynamic Programming\n";
         vector<int> resultDP = solveDP();
         pl(resultDP);
         pl_file(outfile, resultDP, "DYNAMIC PROGRAMMING");
 
         // Chạy Greedy
-        cout << "Dang chay Greedy...\n";
+        cout << "Greedy\n";
         vector<int> resultGreedy = solveGreedy();
         pl(resultGreedy);
         pl_file(outfile, resultGreedy, "GREEDY");
@@ -296,9 +296,6 @@ int main()
     }
 
     outfile.close(); // đóng file
-
-    cout << "\n======== HOAN TAT ========\n";
-    cout << "Ket qua da luu vao output.txt\n";
 
     return 0;
 }
