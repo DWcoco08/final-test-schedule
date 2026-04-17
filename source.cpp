@@ -223,3 +223,61 @@ void pl(vector<int> &s)
         cout << "\n";
     }
 }
+
+// ===== IN KẾT QUẢ VÀO FILE (APPEND) =====
+void pl_file(ofstream &out, vector<int> &s, string strategy)
+{
+    int mx = 0;
+    for (int x : s)
+        mx = max(mx, x); // tìm số ca
+
+    out << "========== " << strategy << " ==========\n";
+    out << "So ca: " << mx << "\n";
+
+    for (int i = 1; i <= mx; i++)
+    {
+        out << "Ca " << i << ": ";
+        for (int j = 0; j < nm; j++)
+            if (s[j] == i)
+                out << j + 1 << " ";
+        out << "\n";
+    }
+    out << "\n";
+}
+
+// ===== CHƯƠNG TRÌNH CHÍNH =====
+int main()
+{
+    rd(); // đọc input
+    bd(); // xây dựng ma trận xung đột
+
+    ofstream outfile("output.txt", ios::app); // mở file append mode
+
+    // Chạy Backtracking
+    cout << "Dang chay Backtracking...\n";
+    vector<int> resultBT = solveBT();
+    pl(resultBT);
+    pl_file(outfile, resultBT, "BACKTRACKING");
+
+    // Reset biến toàn cục cho DP
+    best = nm;
+    ans.assign(nm, 0);
+
+    // Chạy Dynamic Programming
+    cout << "\nDang chay Dynamic Programming...\n";
+    vector<int> resultDP = solveDP();
+    pl(resultDP);
+    pl_file(outfile, resultDP, "DYNAMIC PROGRAMMING");
+
+    // Chạy Greedy
+    cout << "\nDang chay Greedy...\n";
+    vector<int> resultGreedy = solveGreedy();
+    pl(resultGreedy);
+    pl_file(outfile, resultGreedy, "GREEDY");
+
+    outfile.close(); // đóng file
+
+    cout << "\nKet qua da luu vao output.txt\n";
+
+    return 0;
+}
