@@ -168,6 +168,43 @@ vector<int> solveDP()
     return result;
 }
 
+// ===== THAM LAM (GREEDY - SẮP XẾP THEO BẬC) =====
+vector<int> solveGreedy()
+{
+    vector<int> result(nm, 0);
+    vector<int> degree(nm, 0); // số xung đột của mỗi môn
+
+    // Tính bậc (số xung đột) của mỗi môn
+    for (int i = 0; i < nm; i++)
+    {
+        for (int j = 0; j < nm; j++)
+            if (c[i][j]) // nếu xung với j
+                degree[i]++;
+    }
+
+    // Tạo danh sách sorted: sắp xếp theo bậc giảm dần
+    vector<pair<int, int>> sorted; // {bậc, chỉ số môn}
+    for (int i = 0; i < nm; i++)
+        sorted.push_back({degree[i], i});
+
+    sort(sorted.begin(), sorted.end());    // sort theo bậc tăng
+    reverse(sorted.begin(), sorted.end()); // đảo lại thành giảm
+
+    // Gán môn vào ca thi sớm nhất có thể
+    for (auto &p : sorted)
+    {
+        int course = p.second; // chỉ số môn
+        int col = 1;           // thử từ ca 1
+
+        while (!ok(course, col, result)) // nếu không được gán vào ca col
+            col++;
+
+        result[course] = col; // gán vào ca đầu tiên có thể
+    }
+
+    return result;
+}
+
 // ===== IN KẾT QUẢ =====
 void pl(vector<int> &s)
 {
