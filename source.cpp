@@ -4,19 +4,14 @@ using namespace std;
 int ns, nm;
 vector<vector<int>> a, c;
 
-// ===== INPUT =====
+// ===== ĐỌC INPUT =====
 void rd() {
-    cout << "Nhap so sinh vien va so mon: ";
     cin >> ns >> nm;
-
     a.resize(ns);
     for (int i = 0; i < ns; i++) {
-        cout << "\nSinh vien " << i+1 << " hoc bao nhieu mon? ";
         int k; cin >> k;
-
         a[i].resize(k);
-        cout << "Nhap danh sach mon: ";
-        for (int j = 0; j < k; j++)
+        for (int j = 0; j < k; j++) 
             cin >> a[i][j];
     }
 }
@@ -171,12 +166,11 @@ void pl(const vector<int>& s) {
 
 // ===== MAIN =====
 int main() {
-    int t;
-    cout << "Nhap so test case: ";
+     int t;
     cin >> t;
 
     for (int tc = 1; tc <= t; tc++) {
-        cout << "\n===== TEST " << tc << " =====\n";
+        cout << "==== TEST " << tc << " ====\n";
 
         a.clear();
         c.clear();
