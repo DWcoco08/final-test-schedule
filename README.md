@@ -1,79 +1,65 @@
-# Xếp Lịch Thi Cuối Kỳ — PTTKGT
+#include <iostream>
+using namespace std;
 
-## Mục tiêu
-
-Xếp lịch thi cho các môn học sao cho **không có sinh viên nào bị trùng ca thi**, đồng thời **tối thiểu số ca thi** cần dùng.
-
-## 3 chiến lược thuật toán
-
-| Thuật toán | Ưu điểm | Nhược điểm |
-|---|---|---|
-| **Backtracking** | Tìm được lời giải tối ưu | Chậm khi nhiều môn |
-| **Greedy** | Rất nhanh | Có thể không tối ưu |
-| **DP (bitmask)** | Tối ưu, nhanh hơn backtracking | Chỉ dùng được khi n nhỏ (≲ 20) |
-
-## Cấu trúc dự án
+int main() {
+cout << "================ EXAM SCHEDULING SYSTEM ================\n\n";
 
 ```
-├── src/
-│   ├── source.cpp                    # Chương trình chính
-│   ├── core/                       # Module dùng chung
-│   │   ├── scheduler.h             # Struct Course + typedef Schedule
-│   │   ├── input.h / input.cpp     # Đọc file + in kết quả
-│   │   └── conflict.h / conflict.cpp  # Xây dựng ma trận xung đột
-│   └── algorithms/                 # Các thuật toán (mỗi người 1 thuật toán)
-│       ├── backtracking/
-│       ├── greedy/
-│       └── dp/
-├── data/                           # File test
-│   ├── input.txt
-│   └── output.txt
-├── build/
-└── .gitignore
+cout << "1. Gioi thieu\n";
+cout << "- Bai toan xep lich thi tranh trung lich cho sinh vien.\n";
+cout << "- Mo hinh hoa thanh bai toan to mau do thi.\n\n";
+
+cout << "2. Mo hinh bai toan\n";
+cout << "- Mon hoc -> dinh\n";
+cout << "- Xung dot -> canh\n";
+cout << "- Ca thi -> mau\n\n";
+
+cout << "3. Muc tieu\n";
+cout << "- Giam so ca thi toi thieu\n";
+cout << "- Khong co sinh vien thi 2 mon cung luc\n\n";
+
+cout << "4. Thuat toan su dung\n";
+
+cout << "\n4.1 Backtracking\n";
+cout << "- Tim loi giai toi uu\n";
+cout << "- Duyet tat ca kha nang\n";
+cout << "- Cham voi du lieu lon\n";
+
+cout << "\n4.2 Dynamic Programming\n";
+cout << "- Tim tap doc lap lon nhat\n";
+cout << "- Gan tung nhom vao ca thi\n";
+cout << "- Nhanh hon Backtracking\n";
+
+cout << "\n4.3 Greedy\n";
+cout << "- Sap xep theo bac xung dot\n";
+cout << "- Gan ca som nhat co the\n";
+cout << "- Rat nhanh nhung co the khong toi uu\n\n";
+
+cout << "5. Input\n";
+cout << "t (so test case)\n";
+cout << "ns nm (so sinh vien, so mon)\n";
+cout << "Moi sinh vien:\n";
+cout << "k (so mon)\n";
+cout << "danh sach mon\n\n";
+
+cout << "6. Output\n";
+cout << "- So ca thi\n";
+cout << "- Danh sach mon moi ca\n";
+cout << "- Thoi gian tung thuat toan\n\n";
+
+cout << "7. So sanh\n";
+cout << "Backtracking: chinh xac nhat, cham\n";
+cout << "DP: trung binh\n";
+cout << "Greedy: nhanh nhat\n\n";
+
+cout << "8. Huong phat trien\n";
+cout << "- Genetic Algorithm\n";
+cout << "- AI scheduling\n";
+cout << "- Giao dien GUI\n\n";
+
+cout << "========================================================\n";
+
+return 0;
 ```
 
-## Cách dùng
-
-### Build
-```bash
-mkdir -p build
-g++ src/main.cpp src/core/*.cpp -std=c++17 -O2 -o build/schedule
-```
-
-### Chạy
-```bash
-./build/schedule
-```
-
-## Định dạng file input
-
-```
-num_courses  num_students
-count  s1 s2 s3 ...
-count  s1 s2 ...
-...
-```
-
-Ví dụ (3 môn, 5 sinh viên):
-```
-3 5
-3 1 2 3
-2 2 4
-2 3 5
-```
-
-## Cách thêm thuật toán
-
-Mỗi thuật toán chỉ cần là **1 hàm** nhận courses + conflict matrix, trả về `Schedule`:
-
-```cpp
-// Ví dụ trong algorithms/greedy/greedy.h
-Schedule greedy(const vector<Course>& courses, const vector<vector<bool>>& conflict);
-```
-
-Rồi gọi trong `main.cpp`:
-```cpp
-Schedule result = greedy(courses, conflict);
-printSchedule(result);
-printStatistics(result);
-```
+}
