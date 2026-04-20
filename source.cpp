@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+using namespace chrono;
 using namespace std;
 
 int ns, nm;
@@ -179,15 +180,35 @@ int main() {
         rd();
         bd();
 
+        // ===== BACKTRACKING =====
+        auto start = high_resolution_clock::now();
+        vector<int> resBT = solveBT();
+        auto end = high_resolution_clock::now();
+        auto timeBT = duration_cast<milliseconds>(end - start);
+
         cout << "\n--- Backtracking ---";
-        pl(solveBT());
+        pl(resBT);
+        cout << "Time: " << timeBT.count() << " ms\n";
+
+        // ===== DP =====
+        start = high_resolution_clock::now();
+        vector<int> resDP = solveDP();
+        end = high_resolution_clock::now();
+        auto timeDP = duration_cast<milliseconds>(end - start);
 
         cout << "\n--- Dynamic Programming ---";
-        pl(solveDP());
+        pl(resDP);
+        cout << "Time: " << timeDP.count() << " ms\n";
+
+        // ===== GREEDY =====
+        start = high_resolution_clock::now();
+        vector<int> resGreedy = solveGreedy();
+        end = high_resolution_clock::now();
+        auto timeGreedy = duration_cast<milliseconds>(end - start);
 
         cout << "\n--- Greedy ---";
-        pl(solveGreedy());
-    }
+        pl(resGreedy);
+        cout << "Time: " << timeGreedy.count() << " ms\n";
 
     return 0;
 }
