@@ -1,65 +1,104 @@
-#include <iostream>
-using namespace std;
+🎓 Exam Scheduling System (Xếp Lịch Thi)
+📌 Giới thiệu
 
-int main() {
-cout << "================ EXAM SCHEDULING SYSTEM ================\n\n";
+Dự án này giải quyết bài toán xếp lịch thi sao cho không có sinh viên nào phải thi 2 môn cùng lúc.
 
-```
-cout << "1. Gioi thieu\n";
-cout << "- Bai toan xep lich thi tranh trung lich cho sinh vien.\n";
-cout << "- Mo hinh hoa thanh bai toan to mau do thi.\n\n";
+Bài toán được mô hình hóa thành bài toán tô màu đồ thị (Graph Coloring Problem):
 
-cout << "2. Mo hinh bai toan\n";
-cout << "- Mon hoc -> dinh\n";
-cout << "- Xung dot -> canh\n";
-cout << "- Ca thi -> mau\n\n";
+Mỗi môn học → 1 đỉnh
+Nếu 2 môn có sinh viên học chung → có cạnh (xung đột)
+Mỗi màu → 1 ca thi
 
-cout << "3. Muc tieu\n";
-cout << "- Giam so ca thi toi thieu\n";
-cout << "- Khong co sinh vien thi 2 mon cung luc\n\n";
+🎯 Mục tiêu:
+Tối thiểu số ca thi (số màu) sao cho không có xung đột.
 
-cout << "4. Thuat toan su dung\n";
+⚙️ Các thuật toán sử dụng
+1. 🔍 Backtracking
+Duyệt toàn bộ khả năng
+Tìm nghiệm tối ưu (ít ca nhất)
+Độ phức tạp cao → chậm với dữ liệu lớn
+2. 🧠 Dynamic Programming (Independent Set)
+Tìm tập môn không xung đột lớn nhất
+Gán từng nhóm vào từng ca thi
+Nhanh hơn Backtracking
+3. ⚡ Greedy (Tham lam)
+Sắp xếp môn theo số xung đột (bậc)
+Gán vào ca sớm nhất có thể
+Nhanh nhất nhưng có thể không tối ưu
+📥 Cấu trúc Input
+t                      // số test case
+ns nm                  // số sinh viên, số môn
 
-cout << "\n4.1 Backtracking\n";
-cout << "- Tim loi giai toi uu\n";
-cout << "- Duyet tat ca kha nang\n";
-cout << "- Cham voi du lieu lon\n";
+Với mỗi sinh viên:
+k                      // số môn học
+m1 m2 ... mk           // danh sách môn
+📤 Output
+Số ca thi
+Danh sách môn trong từng ca
+Thời gian chạy của từng thuật toán
+📊 Ví dụ
+Input
+1
+3 4
+2 1 2
+2 2 3
+2 3 4
+Output
+--- Backtracking ---
+So ca: 2
+Ca 1: 1 3
+Ca 2: 2 4
+Time: 1200 us
 
-cout << "\n4.2 Dynamic Programming\n";
-cout << "- Tim tap doc lap lon nhat\n";
-cout << "- Gan tung nhom vao ca thi\n";
-cout << "- Nhanh hon Backtracking\n";
+--- Dynamic Programming ---
+So ca: 2
+Time: 300 us
 
-cout << "\n4.3 Greedy\n";
-cout << "- Sap xep theo bac xung dot\n";
-cout << "- Gan ca som nhat co the\n";
-cout << "- Rat nhanh nhung co the khong toi uu\n\n";
+--- Greedy ---
+So ca: 3
+Time: 50 us
+⏱️ Đo thời gian
 
-cout << "5. Input\n";
-cout << "t (so test case)\n";
-cout << "ns nm (so sinh vien, so mon)\n";
-cout << "Moi sinh vien:\n";
-cout << "k (so mon)\n";
-cout << "danh sach mon\n\n";
+Sử dụng thư viện:
 
-cout << "6. Output\n";
-cout << "- So ca thi\n";
-cout << "- Danh sach mon moi ca\n";
-cout << "- Thoi gian tung thuat toan\n\n";
+#include <chrono>
 
-cout << "7. So sanh\n";
-cout << "Backtracking: chinh xac nhat, cham\n";
-cout << "DP: trung binh\n";
-cout << "Greedy: nhanh nhat\n\n";
+Đo bằng:
 
-cout << "8. Huong phat trien\n";
-cout << "- Genetic Algorithm\n";
-cout << "- AI scheduling\n";
-cout << "- Giao dien GUI\n\n";
+auto start = high_resolution_clock::now();
+auto end = high_resolution_clock::now();
 
-cout << "========================================================\n";
+Đơn vị:
 
-return 0;
-```
+microseconds (µs)
+milliseconds (ms)
+📈 So sánh thuật toán
+Thuật toán	Độ chính xác	Tốc độ
+Backtracking	⭐⭐⭐⭐⭐	❌ Chậm
+Dynamic Programming	⭐⭐⭐⭐	⚠️ Trung bình
+Greedy	⭐⭐	⚡ Rất nhanh
+🧩 Ý tưởng chính
+Xây dựng ma trận xung đột
+Áp dụng thuật toán tô màu đồ thị
+So sánh kết quả và thời gian
+🚀 Hướng phát triển
+Áp dụng AI / Machine Learning để dự đoán lịch tốt hơn
+Tối ưu bằng Genetic Algorithm
+Giao diện GUI (Tkinter / Web)
+Xuất file kết quả (.txt, .csv)
+👨‍💻 Công nghệ sử dụng
+C++
+STL (vector, algorithm)
+chrono (đo thời gian)
+📌 Ghi chú
+Input môn học bắt đầu từ 1
+Chuyển về index 0 khi xử lý
+Dữ liệu lớn → nên tránh Backtracking
+📎 Tác giả
+Sinh viên: (Điền tên bạn ở đây)
 
-}
+✨ Đây là một bài toán kinh điển trong:
+
+Lập lịch (Scheduling)
+Tối ưu tổ hợp (Combinatorial Optimization)
+Lý thuyết đồ thị (Graph Theory)
