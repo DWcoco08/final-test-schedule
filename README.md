@@ -159,12 +159,6 @@ auto end = high_resolution_clock::now();
 
 ---
 
-## 📎 Tác giả
-
-* Sinh viên: *(Điền tên bạn ở đây)*
-
----
-
 ✨ Đây là một bài toán kinh điển trong:
 
 * Lập lịch (Scheduling)
