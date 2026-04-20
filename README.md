@@ -92,30 +92,6 @@ So ca: 3
 Time: 50 us
 ```
 
----
-
-## ⏱️ Đo thời gian
-
-Sử dụng thư viện:
-
-```cpp
-#include <chrono>
-```
-
-Đo bằng:
-
-```cpp
-auto start = high_resolution_clock::now();
-auto end = high_resolution_clock::now();
-```
-
-Đơn vị:
-
-* microseconds (µs)
-* milliseconds (ms)
-
----
-
 ## 📈 So sánh thuật toán
 
 | Thuật toán          | Độ chính xác | Tốc độ        |
