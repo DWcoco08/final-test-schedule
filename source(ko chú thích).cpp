@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+using namespace chrono;
 
 int ns, nm;
 vector<vector<int>> a, c;
@@ -168,13 +169,31 @@ int main() {
         rd();
         bd();
 
-        cout << "\nBacktracking\n";
-        pl(solveBT());
+        auto start = high_resolution_clock::now();
+        vector<int> resBT = solveBT();
+        auto end = high_resolution_clock::now();
+        auto timeBT = duration_cast<milliseconds>(end - start);
 
-        cout << "\nDynamic Programming\n";
-        pl(solveDP());
+        cout << "\n--- Backtracking ---";
+        pl(resBT);
+        cout << "Time: " << timeBT.count() << " ms\n";
 
-        cout << "\nGreedy\n";
-        pl(solveGreedy());
+        start = high_resolution_clock::now();
+        vector<int> resDP = solveDP();
+        end = high_resolution_clock::now();
+        auto timeDP = duration_cast<milliseconds>(end - start);
+
+        cout << "\n--- Dynamic Programming ---";
+        pl(resDP);
+        cout << "Time: " << timeDP.count() << " ms\n";
+
+        start = high_resolution_clock::now();
+        vector<int> resGreedy = solveGreedy();
+        end = high_resolution_clock::now();
+        auto timeGreedy = duration_cast<milliseconds>(end - start);
+
+        cout << "\n--- Greedy ---";
+        pl(resGreedy);
+        cout << "Time: " << timeGreedy.count() << " ms\n";
     }
 }
